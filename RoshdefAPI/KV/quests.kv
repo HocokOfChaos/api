@@ -1,0 +1,1193 @@
+"Quests"
+{
+    "1"
+    {
+        "name"          "quest_kill_forest_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_forest_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "300"
+            "QUESTS_REWARD_TYPE_EXP"                       "600"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_forest_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_forest_2"
+                    "creep_count"    "15"
+                }
+            }
+
+        }    
+    }
+    "2"
+    {
+        "name"          "quest_kill_spider_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_spider_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "master_quest"  "7"
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "700"
+            "QUESTS_REWARD_TYPE_EXP"                       "1400"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_spider_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_spider_2"
+                    "creep_count"    "15"
+                }
+            }
+        }    
+    }
+    "3"
+    {
+        "name"          "quest_kill_ice_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_ice_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_2" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "master_quest"  "8"
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "1000"
+            "QUESTS_REWARD_TYPE_EXP"                       "2000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_ice_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_ice_2"
+                    "creep_count"    "15"
+                }
+            }
+        }    
+    }
+    "4"
+    {
+        "name"          "quest_kill_water_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_water_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_2" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "master_quest"  "9"
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "1500"
+            "QUESTS_REWARD_TYPE_EXP"                       "3000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_water_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_water_2"
+                    "creep_count"    "15"
+                }
+            }
+        }    
+    }
+    "5"
+    {
+        "name"          "quest_kill_alliance_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_alliance_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_3" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "master_quest"  "10"
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "3000"
+            "QUESTS_REWARD_TYPE_EXP"                       "6000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_alliance_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_alliance_2"
+                    "creep_count"    "15"
+                }
+            }
+        }    
+    }
+    "6"
+    {
+        "name"          "quest_kill_fire_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_fire_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_smeevil_4" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "master_quest"  "11"
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "4000"
+            "QUESTS_REWARD_TYPE_EXP"                       "8000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_fire_1"
+                    "creep_count"    "30"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_fire_2"
+                    "creep_count"    "15"
+                }
+            }
+        }    
+    }
+    "7"
+    {
+        "name"          "quest_kill_forest_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_forest_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "1"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "500"
+            "QUESTS_REWARD_TYPE_EXP"                        "1000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_forest_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_forest_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_forest_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+   "8"
+    {
+        "name"          "quest_kill_spider_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_spider_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "2"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "900"
+            "QUESTS_REWARD_TYPE_EXP"                        "1800"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_spider_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_spider_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_spider_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+   "9"
+    {
+        "name"          "quest_kill_ice_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_ice_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_2" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "3"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "1250"
+            "QUESTS_REWARD_TYPE_EXP"                        "2500"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_ice_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_ice_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_ice_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+   "10"
+    {
+        "name"          "quest_kill_water_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_water_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_2" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "4"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "2000"
+            "QUESTS_REWARD_TYPE_EXP"                        "4000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_water_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_water_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_water_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+   "11"
+    {
+        "name"          "quest_kill_alliance_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_alliance_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_3" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "5"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "3500"
+            "QUESTS_REWARD_TYPE_EXP"                        "7000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_alliance_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_alliance_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_alliance_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+    "12"
+    {
+        "name"          "quest_kill_fire_strong_mobs" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_fire_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_4" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "6"
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "5000"
+            "QUESTS_REWARD_TYPE_EXP"                        "10000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_fire_3"
+                    "creep_count"    "15"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_fire_4"
+                    "creep_count"    "10"
+                }
+            }
+            "3"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_creep_fire_5"
+                    "creep_count"    "10"
+                }
+            }
+        }
+    }
+    "13"
+    {
+        "name"          "quest_reach_lvl_50" //// ИМЯ КВЕСТА
+        "description"   "quest_reach_lvl_50_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "22"
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "3000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_50"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "50"
+                }
+            }
+        }
+    }
+    "14"
+    {
+        "name"          "quest_reach_lvl_100" //// ИМЯ КВЕСТА
+        "description"   "quest_reach_lvl_100_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "23"
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "5000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_50"
+                "2"                     "item_bonus_stats_50"
+                "3"                     "item_bonus_stats_50"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "100"
+                }
+            }
+        }
+    }
+    "15"
+    {
+        "name"          "take_bananas_to_supervisor" //// ИМЯ КВЕСТА
+        "description"   "take_bananas_to_supervisor_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_wd" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "200"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_reward_banana"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_BRING_ITEM"
+                "Data" 
+                {
+                    "item"    "item_banana"
+                    "amount"    "30"
+                }
+            }
+        }
+    }
+    "16"
+    {
+        "name"          "deal_big_dmg" //// ИМЯ КВЕСТА
+        "description"   "deal_big_dmg_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "10000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_50"
+                "2"                     "item_bonus_stats_50"
+                "3"                     "item_bonus_stats_50"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_DEAL_DAMAGE"
+                "Data" 
+                {
+                    "amount"    "10000000"
+                }
+            }
+        }
+    }
+    "17"
+    {
+        "name"          "kill_enemy_tower" //// ИМЯ КВЕСТА
+        "description"   "kill_enemy_tower_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_wd" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "22"
+        "auto_finish_flag"  "QUESTS_AUTO_FINISH_FLAG_TYPE_DESTROYED_BUILDINGS" // автоматическое завершение квеста успехом, если флаг где-то установлен
+        
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "2000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_10"
+                "2"                     "item_bonus_stats_10"
+                "3"                     "item_bonus_stats_10"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_DESTROY_ENEMY_BUILDINGS"
+                "Data" 
+                {
+                    "amount"    "5" // в коде захардкожена установка флага QUESTS_AUTO_FINISH_FLAG_TYPE_DESTROYED_BUILDINGS при разрушение 5 построек и автозавершение квеста т.к. флаг установлен
+                    // стоит сделать это по хорошему не хардкодом, но когда-то потом, вероятно никогда
+                }
+            }
+        }
+    }
+    "18"
+    {
+        "name"          "destroy_trees" //// ИМЯ КВЕСТА
+        "description"   "destroy_trees_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_wd" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "500"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_5"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_CUT_TREE"
+                "Data" 
+                {
+                    "amount"    "50"
+                }
+            }
+            "2"
+            {
+                "type"        "QUESTS_ACTION_TYPE_TALK_TO_NPC"
+                "Data" 
+                {
+                    "npc_name"     "npc_dota_wd"
+                    "RequiredActionsToBeCompleted" 
+                    {
+                        "1" "1"
+                    }
+                }
+            }
+        }
+    }
+    "19"
+    {
+        "name"          "take_fishes_to_supervisor" //// ИМЯ КВЕСТА
+        "description"   "take_fishes_to_supervisor_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_wd" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "13"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "1000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_reward_fish"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_BRING_ITEM"
+                "Data" 
+                {
+                    "item"    "item_fish"
+                    "amount"    "30"
+                }
+            }
+        }
+    }
+    "20"
+    {
+        "name"          "take_meat_to_supervisor" //// ИМЯ КВЕСТА
+        "description"   "take_meat_to_supervisor_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_wd" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "23"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "2000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_reward_meat"
+                "2"                     "item_gold_seeker_boots"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_BRING_ITEM"
+                "Data" 
+                {
+                    "item"    "item_meat"
+                    "amount"    "30"
+                }
+            }
+        }
+    }
+    "21"
+    {
+        "name"          "quest_reach_lvl_10" //// ИМЯ КВЕСТА
+        "description"   "quest_reach_lvl_10_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "1000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_5"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "10"
+                }
+            }
+        }
+    }
+    "22"
+    {
+        "name"          "quest_reach_lvl_25" //// ИМЯ КВЕСТА
+        "description"   "quest_reach_lvl_25_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "21"
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "2000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_5"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "25"
+                }
+            }
+        }
+    }
+    "23"
+    {
+        "name"          "quest_reach_lvl_75" //// ИМЯ КВЕСТА
+        "description"   "quest_reach_lvl_75_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_arc_warden" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "13"
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_GOLD"                      "2000"
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_bonus_stats_50"
+                "2"                     "item_bonus_stats_50"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "75"
+                }
+            }
+        }
+    }
+    "24"
+    {
+        "name"          "quest_find_aghanim" //// ИМЯ КВЕСТА
+        "description"   "quest_find_aghanim_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_EXP"                       "500"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_ENTITY"
+                "description"    "find_aghanim__descr"
+                "Data" 
+                {
+                    "entity_name"   "info_target_aghanim"       
+                    "distance"    "500"
+                }
+            }
+        }
+    }
+//    "25"
+//    {
+//        "name"          "quest_kill_line_weak_mobs" //// ИМЯ КВЕСТА
+//        "description"   "quest_kill_line_weak_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+//        "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+//        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+//
+//        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+//        {
+//            "QUESTS_REWARD_TYPE_GOLD"                      "200"
+//            "QUESTS_REWARD_TYPE_EXP"                       "500"
+//        }
+//        "Actions" //// ТЕЛО КВЕСТА
+//        {
+//            "1"
+//            {
+//                "type"        "QUESTS_ACTION_TYPE_KILL"
+//                "Data" 
+//                {
+//                    "creep_name"     "npc_dota_dire1"
+//                    "creep_count"    "15"
+//                }
+//            }
+//        }
+//    }
+    "26"
+    {
+        "name"          "quest_kill_wraith_king" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_wraith_king_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "9"
+        "auto_finish_flag"  "QUESTS_AUTO_FINISH_FLAG_TYPE_WRAITH_KING_BOSS_DEAD" // автоматическое завершение квеста успехом, если флаг где-то установлен
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_EXP"                       "5000"
+
+            "QUESTS_REWARD_TYPE_ITEMS"                     
+            {
+                "1"                     "item_felt_boots_custom"
+            }
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_dota_wraith_king_boss"
+                    "creep_count"    "1"
+                }
+            }
+        }
+    }
+    "27"
+    {
+        "name"          "quest_kill_kunka" //// ИМЯ КВЕСТА
+        "description"   "quest_kill_kunka_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_smeevil_3" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "master_quest"  "13"
+        "auto_finish_flag"  "QUESTS_AUTO_FINISH_FLAG_TYPE_WATER_SECRET_BOSS_DEAD" // автоматическое завершение квеста успехом, если флаг где-то установлен
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_EXP"                       "10000"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL"
+                "Data" 
+                {
+                    "creep_name"     "npc_boss_water_secret"
+                    "creep_count"    "1"
+                }
+            }
+        }
+    }
+    "28"
+    {
+        "name"          "quest_daily1" //// ИМЯ КВЕСТА
+        "description"   "quest_daily1_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_daily" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "daily"         "1"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_SOUL_STONES"                       "2"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_KILL_ANY_ENEMY"
+                "Data" 
+                {
+                    "amount"    "500"
+                }
+            }
+        }
+    }
+    "29"
+    {
+        "name"          "quest_daily2" //// ИМЯ КВЕСТА
+        "description"   "quest_daily2_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"           "npc_quest_daily" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "daily"         "1"
+        
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_SOUL_STONES"                       "2"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_DEAL_DAMAGE"
+                "Data" 
+                {
+                    "amount"    "500000"
+                }
+            }
+        }
+    }
+    "30"
+    {
+        "name"          "quest_daily3" //// ИМЯ КВЕСТА
+        "description"   "quest_daily3_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_daily" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "daily"         "1"
+
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_SOUL_STONES"                       "2"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_REACH_HERO_LEVEL"
+                "Data" 
+                {
+                    "level_required"    "75"
+                }
+            }
+        }
+    }
+    "31"
+    {
+        "name"          "quest_daily4" //// ИМЯ КВЕСТА
+        "description"   "quest_daily4_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+        "npc"    "npc_quest_daily" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+        "daily"         "1"
+        
+        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+        {
+            "QUESTS_REWARD_TYPE_SOUL_STONES"                       "2"
+        }
+        "Actions" //// ТЕЛО КВЕСТА
+        {
+            "1"
+            {
+                "type"        "QUESTS_ACTION_TYPE_EARN_GOLD"
+                "Data" 
+                {
+                    "amount"    "50000"
+                }
+            }
+        }
+    }
+//    "32"
+//    {
+//        "name"          "quest_kill_line_weak_rng_mobs" //// ИМЯ КВЕСТА
+//        "description"   "quest_kill_line_weak_rng_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+//        "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+//        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+//        "master_quest"  "25"
+//
+//        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+//        {
+//            "QUESTS_REWARD_TYPE_GOLD"                      "400"
+//            "QUESTS_REWARD_TYPE_EXP"                       "1000"
+//        }
+//        "Actions" //// ТЕЛО КВЕСТА
+//        {
+//            "1"
+//            {
+//                "type"        "QUESTS_ACTION_TYPE_KILL"
+//                "Data" 
+//                {
+//                    "creep_name"     "npc_dota_direr1"
+//                    "creep_count"    "10"
+//                }
+//            }
+//        }
+//    }
+//    "33"
+//    {
+//        "name"          "quest_kill_line_mdl_mobs" //// ИМЯ КВЕСТА
+//        "description"   "quest_kill_line_mdl_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+//        "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+//        "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+//        "master_quest"  "32"
+//
+//        "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+//        {
+//            "QUESTS_REWARD_TYPE_GOLD"                      "800"
+//            "QUESTS_REWARD_TYPE_EXP"                       "2000"
+//        }
+//        "Actions" //// ТЕЛО КВЕСТА
+//        {
+//            "1"
+//            {
+//                "type"        "QUESTS_ACTION_TYPE_KILL"
+//                "Data" 
+//                {
+//                    "creep_name"     "npc_dota_dire2"
+//                    "creep_count"    "10"
+//                }
+//            }
+//            "2"
+//            {
+//                "type"        "QUESTS_ACTION_TYPE_KILL"
+//                "Data" 
+//                {
+//                    "creep_name"     "npc_dota_direr2"
+//                    "creep_count"    "10"
+//                }
+//            }
+//        }
+//    }
+//   "34"
+//   {
+//       "name"          "quest_kill_line_fat_mobs" //// ИМЯ КВЕСТА
+//       "description"   "quest_kill_line_fat_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+//       "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+//       "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+//       "master_quest"  "33"
+//
+//       "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+//       {
+//           "QUESTS_REWARD_TYPE_GOLD"                      "1000"
+//           "QUESTS_REWARD_TYPE_EXP"                       "3000"
+//       }
+//       "Actions" //// ТЕЛО КВЕСТА
+//       {
+//           "1"
+//           {
+//               "type"        "QUESTS_ACTION_TYPE_KILL"
+//               "Data" 
+//               {
+//                   "creep_name"     "npc_dota_dire3"
+//                   "creep_count"    "10"
+//               }
+//           }
+//       }
+//   }
+//   "35"
+//   {
+//       "name"          "quest_kill_line_strong_mobs" //// ИМЯ КВЕСТА
+//       "description"   "quest_kill_line_strong_mobs_desc" /// ЕГО ОСНОВНОЕ ОПИСАНИЕ В UI
+//       "npc"    "npc_dota_roshan1" /// ИМЯ КРИПА, ДАЮЩЕГО КВЕСТ
+//       "repeatable"    "0" // квест можно завершить успехом только 1 раз за игру (не факт что вообще работает при значение = 1)
+//       "master_quest"  "34"
+//
+//       "Rewards" /// НАГРАДЫ ЗА УСПЕШНОЕ ЗАВЕРШЕНИЕ
+//       {
+//           "QUESTS_REWARD_TYPE_GOLD"                      "1500"
+//           "QUESTS_REWARD_TYPE_EXP"                       "5000"
+//       }
+//       "Actions" //// ТЕЛО КВЕСТА
+//       {
+//           "1"
+//           {
+//               "type"        "QUESTS_ACTION_TYPE_KILL"
+//               "Data" 
+//               {
+//                   "creep_name"     "npc_dota_dire4_1"
+//                   "creep_count"    "5"
+//               }
+//           }
+//           "2"
+//           {
+//               "type"        "QUESTS_ACTION_TYPE_KILL"
+//               "Data" 
+//               {
+//                   "creep_name"     "npc_dota_dire4_2"
+//                   "creep_count"    "5"
+//               }
+//           }
+//       }
+//   }
+}

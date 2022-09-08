@@ -1,0 +1,62 @@
+﻿@page
+
+@using Microsoft.Extensions.Options
+@using RoshdefAPI.Admin.Services.Core
+@using RoshdefAPI.Shared.Models.Configuration
+
+@inject IJsonViewLocalizer Localizer
+@inject IOptions<ApplicationSettings> Options
+
+@model LoginModel
+
+@{
+    ViewData["Title"] = @Localizer["LoginPage.Title"];
+}
+
+<h3 class="box-title">@ViewData["Title"]</h3>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <div asp-validation-summary="ModelOnly" class="text-black"></div>
+                        <span asp-validation-for="Input.Login" class="text-black"></span>
+                        <span asp-validation-for="Input.Password" class="text-black"></span>
+                    </div>
+                }
+                <div class="form-floating mb-4">
+                    <input asp-for="Input.Login" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Login" class="form-label">@Localizer["LoginPage.Login"]</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label">@Localizer["LoginPage.Password"]</label>
+                </div>
+                  <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                      <div class="form-check">
+                        <input class="form-check-input" asp-for="Input.RememberMe" checked />
+                        <label asp-for="Input.RememberMe"> @Localizer["LoginPage.RememberMe"] </label>
+                      </div>
+                    </div>
+
+                        @if (Options.Value.RegistrationEnabled)
+                        {
+                            <div class="col">
+                              <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@Localizer["LoginPage.RegisterTooltip"]</a></p>
+                            </div>
+                        }
+                  </div>
+                <div class="align-items-center justify-content-center">
+                    <button id="login-submit" type="submit" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["LoginPage.LoginIn"]</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

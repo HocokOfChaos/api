@@ -1,0 +1,25 @@
+﻿@page
+@using RoshdefAPI.Admin.Services.Core
+@inject IJsonViewLocalizer Localizer
+@model LogoutModel
+@{
+    ViewData["Title"] = @Localizer["LogoutPage.Title"];
+}
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <div class="align-items-center justify-content-center">
+                    <button type="submit" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["LogoutPage.Description"]</button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <p>@Localizer["LogoutPage.Description.Success"]</p>
+        }
+    }
+</header>

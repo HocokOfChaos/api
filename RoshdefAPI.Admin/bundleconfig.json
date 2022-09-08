@@ -1,0 +1,23 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/css/style.css",
+      "wwwroot/css/data-tables-custom.css",
+      "wwwroot/css/players.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/waves.js",
+      "wwwroot/js/sidebarmenu.js",
+      "wwwroot/js/custom.js",
+      "wwwroot/js/app-style-switcher.js",
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

@@ -1,0 +1,21 @@
+﻿.busy #item-remove-item-submit,
+.busy #item-add-new-item-submit,
+.busy #item-save-changes,
+.busy #update-player-balance-submit
+{
+    visibility: hidden;
+}
+
+.player-balance,
+.player-inventory,
+.player-logs 
+{
+    visibility: hidden;
+}
+
+.player-data-visible .player-balance,
+.player-data-visible .player-inventory,
+.player-data-visible .player-logs 
+{
+    visibility: visible;
+}

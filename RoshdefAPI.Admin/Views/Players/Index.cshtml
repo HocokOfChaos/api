@@ -1,0 +1,816 @@
+﻿@using RoshdefAPI.Admin.Controllers
+@using RoshdefAPI.Admin.Services.Core
+@using Microsoft.AspNetCore.Antiforgery
+
+@inject IJsonViewLocalizer Localizer
+@inject IAntiforgery Antiforgery
+
+@{
+    ViewData["Title"] = @Localizer["PlayersPage.Title"];
+}
+
+<h3 class="box-title">@ViewData["Title"]</h3>
+<div class="row" id="playerDataContainer">
+    <div class="col-md-12">
+        <div id="errorMessageContainer" class="alert alert-danger" role="alert" hidden>
+            <h4 class="alert-heading">@Localizer["PlayersPage.Error.Title"]</h4>
+            <span id="errorMessage"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form id="playerDataForm" novalidate class="needs-validation md-4">
+                <div class="form-floating mb-4">
+                    <input type="number" class="form-control" name="steam-id" id="steam-id" aria-required="true">
+                    <label class="form-label" for="steam-id">@Localizer["PlayersPage.SteamID"]</label>
+                </div>
+                <div class="align-items-center justify-content-center">
+                    <button type="button" onclick="GetPlayerData()" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["PlayersPage.Load"]</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row player-balance">
+        <div class="col-md-4">
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6">
+                    <h3 class="box-title">@Localizer["PlayersPage.Balance"]</h3>
+                </div>
+            </div>
+            <form id="player-balance-form" novalidate class="needs-validation md-4">
+                <div class="form-floating mb-4">
+                    <input type="number" class="form-control" id="soul-stones" name="soul-stones" aria-required="true">
+                    <label class="form-label" for="soul-stones">@Localizer["PlayersPage.SoulStones"]</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="number" class="form-control" id="crystals" name="crystals" aria-required="true">
+                    <label class="form-label" for="crystals">@Localizer["PlayersPage.Crystals"]</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="number" class="form-control" id="coins" name="coins" aria-required="true">
+                    <label class="form-label" for="coins">@Localizer["PlayersPage.Coins"]</label>
+                </div>
+                <div id="UpdatePlayerBalanceButtonsContainer" class="w-100 col-md-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">@Localizer["PlayersPage.Loading"]</span>
+                        </div>
+                    </div>
+                    <div class="align-items-center justify-content-center">
+                        <button type="button" id="update-player-balance-submit" onclick="OnUpdatePlayerBalanceClicked()" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["PlayersPage.Save"]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row player-inventory">
+        <div class="col-md-12">
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6">
+                    <h3 class="box-title float-start">@Localizer["PlayersPage.Inventory"]</h3>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button type="button" id="item-add-new" class="btn btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white" data-bs-toggle="modal" data-bs-target="#itemAddModal">@Localizer["PlayersPage.AddNewItem"]</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-nowrap" id="playerInventory">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">@Localizer["PlayersPage.Inventory.ItemName"]</th>
+                            <th class="border-top-0">@Localizer["PlayersPage.Inventory.Count"]</th>
+                            <th class="border-top-0">@Localizer["PlayersPage.Inventory.ExpireDate"]</th>
+                            <th class="border-top-0"></th>
+                            <th class="border-top-0"></th>
+                        </tr>
+                    </thead>
+                    <tbody />
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row player-logs">
+        <div class="col-md-12">
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6">
+                    <h3 class="box-title float-start">@Localizer["PlayersPage.Logs"]</h3>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button type="button" id="item-add-new" class="btn btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white" data-bs-toggle="modal" data-bs-target="#itemAddModal">@Localizer["PlayersPage.AddNewItem"]</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-nowrap" id="playerLogs">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">@Localizer["PlayersPage.Logs.Date"]</th>
+                            <th class="border-top-0">@Localizer["PlayersPage.Logs.Content"]</th>
+                        </tr>
+                    </thead>
+                    <tbody />
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex justify-content-center" id="loadingSpinner">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">@Localizer["PlayersPage.Loading"]</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="itemEditModal" tabindex="-1" aria-labelledby="itemEditTitleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemEditTitleLabel">Item_name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div id="itemEditModalErrorContainer" class="alert alert-danger" role="alert" hidden>
+                        <h4 class="alert-heading">@Localizer["PlayersPage.Error.Title"]</h4>
+                        <span id="itemEditModalErrorMessage"></span>
+                    </div>
+                </div>
+                <form id="item-edit-data-form">
+                    <div class="mb-3">
+                        <label for="item-count" class="col-form-label">@Localizer["PlayersPage.Inventory.Count"]</label>
+                        <input type="number" class="form-control" id="item-count" name="item-count" min="1" max="99999">
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex flex-row">
+                            <label for="item-expire-date" class="col-form-label">@Localizer["PlayersPage.Inventory.ExpireDate"]</label>
+                        </div>
+                        <input type="datetime-local" class="form-control" id="item-expire-date" name="item-expire-date" step="1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="itemEditButtonsContainer" class="w-100 col-md-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">@Localizer["PlayersPage.Loading"]</span>
+                        </div>
+                    </div>
+                    <button type="button" id="item-save-changes" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["PlayersPage.Save"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="itemAddModal" tabindex="-1" aria-labelledby="itemAddTitleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemAddTitleLabel">@Localizer["PlayersPage.AddNewItem.Title"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div id="itemAddModalErrorContainer" class="alert alert-danger" role="alert" hidden>
+                        <h4 class="alert-heading">@Localizer["PlayersPage.Error.Title"]</h4>
+                        <span id="itemAddModalErrorMessage"></span>
+                    </div>
+                </div>
+                <form id="item-add-data-form">
+                    <div class="mb-3">
+                        <label for="item-id">@Localizer["PlayersPage.Inventory.ItemName"]</label>
+                        <select id="item-id" name="item-id" class="form-select" aria-label="Item name select">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-count" class="col-form-label">@Localizer["PlayersPage.Inventory.Count"]</label>
+                        <input type="number" class="form-control" id="item-count" name="item-count" min="1" max="99999" value="1">
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex flex-row">
+                            <label for="item-expire-date" class="col-form-label">@Localizer["PlayersPage.Inventory.ExpireDate"]</label>
+                        </div>
+                        <input type="datetime-local" class="form-control" id="item-expire-date" name="item-expire-date" step="1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="itemAddButtonsContainer" class="w-100 col-md-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">@Localizer["PlayersPage.Error.Title"]</span>
+                        </div>
+                    </div>
+                    <button type="button" id="item-add-new-item-submit" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["PlayersPage.AddNewItem"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="itemRemoveModal" tabindex="-1" aria-labelledby="itemRemoveTitleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemRemoveTitleLabel">@Localizer["PlayersPage.DeleteItem.Title"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div id="itemRemoveModalErrorContainer" class="alert alert-danger" role="alert" hidden>
+                        <h4 class="alert-heading">@Localizer["PlayersPage.Error.Title"]</h4>
+                        <span id="itemRemoveModalErrorMessage"></span>
+                    </div>
+                </div>
+                <h4>@Localizer["PlayersPage.DeleteItem.Description"]</h4>
+            </div>
+            <div class="modal-footer">
+                <div id="itemRemoveButtonsContainer" class="w-100 col-md-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">@Localizer["PlayersPage.Loading"]</span>
+                        </div>
+                    </div>
+                    <button type="button" id="item-remove-item-submit" class="btn w-100 btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white">@Localizer["PlayersPage.DeleteItem"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css" rel="stylesheet" type="text/css" />
+}
+
+    @section scripts {
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+    <script src="~/js/toasts.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            ShowGlobalLoadingSpinner(false);
+            SetPlayerDataVisible(false);
+            var itemsTable = $('#playerInventory');
+            InitInventoryTable(itemsTable);
+            var logsTable = $('#playerLogs');
+            InitDataTable(logsTable);
+            var itemEditModal = document.getElementById('itemEditModal')
+            itemEditModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var steamID = button.getAttribute('data-bs-steam-id');
+                var itemID = button.getAttribute('data-bs-item-id');
+                var itemName = itemEditModal.querySelector('#itemEditTitleLabel');
+                var itemCount = itemEditModal.querySelector('#item-count');
+                var itemExpireDate = itemEditModal.querySelector('#item-expire-date');
+                var row = itemsTable.data('findRowByItemID')(itemID);
+                if (row == null) {
+                    HideModalWindow(itemEditModal);
+                    return;
+                }
+                rowContent = row.data();
+                itemName.innerHTML = rowContent[0];
+                itemCount.value = rowContent[1];
+                itemExpireDate.value = ConvertDateTimeToDateTimeLocalString(rowContent[5]);
+                ResetErrorMessageItemEditModal();
+                $("#item-save-changes").click(function() {
+                    let formData = $("#item-edit-data-form").serializeArray();
+                    formData.push({ name: "item-id", value: itemID });
+                    formData.push({ name: "item-steam-id", value: steamID });
+                    ResetErrorMessageItemEditModal();
+                    ShowLoadingSpinnerItemEditModal(true);
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(nameof(PlayersController.UpdateItem))',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        beforeSend: function(request) { request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken") },
+                        data: formData,
+                        success: function(result) {
+                            if (result.success == true) {
+                                UpdateOrAddInventoryRow(
+                                    steamID,
+                                    result.data.item_name,
+                                    result.data.count,
+                                    result.data.expire_date,
+                                    result.data.item_id,
+                                    function(success, error) {
+                                        if (success == false) {
+                                            ShowErrorItemEditModal(error);
+                                        } else {
+                                            HideModalWindow(itemEditModal);
+                                            UpdateLogs();
+                                        }
+                                    }
+                                );
+                            } else {
+                                ShowErrorItemEditModal(result.error);
+                            }
+                            ShowLoadingSpinnerItemEditModal(false);
+                        },
+                        error: function() {
+                            ShowErrorItemEditModal('@Localizer["PlayersPage.FailedToLoad"]');
+                            ShowLoadingSpinnerItemEditModal(false);
+                        },
+                    });
+                });
+            });
+            var itemAddModal = document.getElementById('itemAddModal')
+            itemAddModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var steamID = button.getAttribute('data-bs-steam-id');
+                ResetErrorMessageItemAddModal();
+                $("#item-add-new-item-submit").click(function() {
+                    let formData = $("#item-add-data-form").serializeArray();
+                    formData.push({ name: "item-steam-id", value: steamID });
+                    ResetErrorMessageItemAddModal();
+                    ShowLoadingSpinnerItemAddModal(true);
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(nameof(PlayersController.AddItem))',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        beforeSend: function(request) { request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken") },
+                        data: formData,
+                        success: function(result) {
+                            if (result.success == true) {
+                                UpdateOrAddInventoryRow(
+                                    steamID,
+                                    result.data.item_name,
+                                    result.data.count,
+                                    result.data.expire_date,
+                                    result.data.item_id,
+                                    function(success, error) {
+                                        if (success == false) {
+                                            ShowErrorItemAddModal(error);
+                                        } else {
+                                            HideModalWindow(itemAddModal);
+                                            $.toast({
+                                                type: 'info',
+                                                title: '@Localizer["PlayersPage.Notification.Success.Title"]',
+                                                subtitle: '',
+                                                content: '@Localizer["PlayersPage.Notification.ItemAdded"]'.replace("%ITEM_NAME%", result.data.item_name),
+                                                delay: 5000
+                                            });
+                                            UpdateLogs();
+                                        }
+                                    }
+                                );
+                            } else {
+                                ShowErrorItemAddModal(result.error);
+                            }
+                            ShowLoadingSpinnerItemAddModal(false);
+                        },
+                        error: function() {
+                            ShowErrorItemAddModal('@Localizer["PlayersPage.FailedToLoad"]');
+                            ShowLoadingSpinnerItemAddModal(false);
+                        },
+                    });
+                });
+            });
+            var itemRemoveModal = document.getElementById('itemRemoveModal')
+            itemRemoveModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget;
+                var steamID = button.getAttribute('data-bs-steam-id');
+                var itemID = button.getAttribute('data-bs-item-id');
+                ResetErrorMessageItemRemoveModal();
+                $("#item-remove-item-submit").click(function() {
+                    let formData = [];
+                    formData.push({ name: "item-steam-id", value: steamID });
+                    formData.push({ name: "item-id", value: itemID });
+                    ResetErrorMessageItemRemoveModal();
+                    ShowLoadingSpinnerItemRemoveModal(true);
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(nameof(PlayersController.DeleteItem))',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        beforeSend: function(request) { request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken") },
+                        data: formData,
+                        success: function(result) {
+                            if (result.success == true) {
+                                RemoveInventoryRow(
+                                    itemID,
+                                    function(success, error) {
+                                        if (success == false) {
+                                            ShowErrorItemRemoveModal(error);
+                                        } else {
+                                            HideModalWindow(itemRemoveModal);
+                                            $.toast({
+                                                type: 'info',
+                                                title: '@Localizer["PlayersPage.Notification.Success.Title"]',
+                                                subtitle: '',
+                                                content: '@Localizer["PlayersPage.Notification.ItemDeleted"]',
+                                                delay: 5000
+                                            });
+                                            UpdateLogs();
+                                        }
+                                    }
+                                );
+                            } else {
+                                ShowErrorItemRemoveModal(result.error);
+                            }
+                            ShowLoadingSpinnerItemRemoveModal(false);
+                        },
+                        error: function() {
+                            ShowErrorItemRemoveModal('@Localizer["PlayersPage.FailedToLoad"]');
+                            ShowLoadingSpinnerItemRemoveModal(false);
+                        },
+                    });
+                });
+            });
+        });
+
+        function OnUpdatePlayerBalanceClicked() {
+            var updatebalanceButton = event.srcElement;
+            ResetGlobalErrorMessage();
+            ShowLoadingSpinnerUpdateBalance(true);
+            let formData = $("#player-balance-form").serializeArray();
+            formData.push({ name: "steam-id", value: updatebalanceButton.getAttribute("data-bs-steam-id") });
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(nameof(PlayersController.UpdateBalance))',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                beforeSend: function(request) { request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken") },
+                data: formData,
+                success: function(result) {
+                    if (result.success == true) {
+                        UpdatePlayerBalance(result.data.steam_id, result.data.balance);
+                        $.toast({
+                            type: 'info',
+                            title: '@Localizer["PlayersPage.Notification.Success.Title"]',
+                            subtitle: '',
+                            content: '@Localizer["PlayersPage.Notification.BalanceUpdated"]',
+                            delay: 5000
+                        });
+                        UpdateLogs();
+                    } else {
+                        ShowGlobalError(result.error);
+                    }
+                    ShowLoadingSpinnerUpdateBalance(false);
+                },
+                error: function() {
+                    ShowGlobalError('@Localizer["PlayersPage.FailedToLoad"]');
+                    ShowLoadingSpinnerUpdateBalance(false);
+                },
+            });
+        }
+
+        function InitInventoryTable(table) {
+            let t = InitDataTable(table);
+            table.data('findRowByItemID', function(itemID) {
+                return table.data('findRowByValueInColumn')(6, itemID);
+            });
+        }
+
+        function InitDataTable(table) {
+            let t = table.DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/ru.json'
+                }
+            });
+            table.data('addTableRow', function(data) {
+                t.row.add(data).draw(false);
+            });
+            table.data('clearTable', function() {
+                t.clear().draw();
+            });
+            table.data('findRowByValueInColumn', function(columnIndex, value) {
+                let result = null;
+                t.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                    var data = this.data();
+                    if (data[columnIndex] == value) {
+                        result = this;
+                    }
+                });
+                return result;
+            });
+            return t;
+        }
+
+        function GetPlayerData() {
+            ResetGlobalErrorMessage();
+            ShowGlobalLoadingSpinner(true);
+            SetPlayerDataVisible(false);
+            var globalError = "";
+            var playerData = $("#playerDataForm").serializeArray();
+            var ajaxes = [
+                {
+                    url: '@Url.Action(nameof(PlayersController.GetData))',
+                    data: playerData,
+                    success: function(result) {
+                        if (result.success == false) {
+                            globalError = globalError + result.error;
+                        } else {
+                            PopulateInventoryTable(result.data.steam_id, result.data.items);
+                            UpdatePlayerBalance(result.data.steam_id, result.data.balance);
+                        }
+                    },
+                    error: function() {
+                        globalError = globalError + '@Localizer["PlayersPage.FailedToLoad"]' + "<br>";
+                    }
+                },
+                {
+                    url: '@Url.Action(nameof(ShopItemsController.GetAll), nameof(ShopItemsController).Replace("Controller", string.Empty))',
+                    data: playerData,
+                    success: function(result) {
+                        if (result.success == false) {
+                            globalError = globalError + result.error;
+                        } else {
+                            PopulateAddItemsDropDown(result.data);
+                        }
+                    },
+                    error: function() {
+                        globalError = globalError + '@Localizer["PlayersPage.FailedToLoadItems"]' + "<br>";
+                    }
+                },
+                {
+                    custom: true,
+                    data: playerData,
+                    success: function(result) {
+                        if (result.success == false) {
+                            globalError = globalError + result.error;
+                        } else {
+                            PopulateLogsTable(result.data);
+                            SetPlayerDataVisible(true);
+                        }
+                    },
+                    error: function() {
+                        globalError = globalError + '@Localizer["PlayersPage.FailedToLoadLogs"]';
+                    },
+                    action: function(data, success, error, complete) {
+                        UpdateLogs(data, success, error, complete);
+                    }
+                }
+            ];
+            var current = 0;
+            function do_ajax() {
+                if (current < ajaxes.length) {
+                    if (ajaxes[current].custom == true) {
+                        ajaxes[current].action(
+                            ajaxes[current].data,
+                            function(result) {
+                                console.log("Done logs");
+                                console.log(result);
+                                ajaxes[current].success(result);
+                            },
+                            function() {
+                                ajaxes[current].error();
+                            },
+                            function() {
+                                current++;
+                                do_ajax();
+                            }
+                        )
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: ajaxes[current].url,
+                            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                            beforeSend: function(request) {
+                                request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken")
+                            },
+                            data: ajaxes[current].data,
+                            success: function(result) {
+                                ajaxes[current].success(result);
+                            },
+                            error: function() {
+                                ajaxes[current].error();
+                            },
+                            complete: function() {
+                                current++;
+                                do_ajax();
+                            }
+                        });
+                    }
+                } else {
+                    ShowGlobalLoadingSpinner(false);
+                    if (globalError.length > 0) {
+                        ShowGlobalError(globalError);
+                    } else {
+                        SetPlayerDataVisible(true);
+                    }
+                }
+            }
+            do_ajax();
+        }
+
+        function UpdateLogs(data, customSuccess, customError, customComplete) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(nameof(PlayersController.GetLogs))',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                beforeSend: function(request) {
+                    request.setRequestHeader("RequestVerificationToken", "@Antiforgery.GetTokens(Context).RequestToken")
+                },
+                data: data == null ? $("#playerDataForm").serializeArray() : data,
+                success: function(result) {
+                    if (customSuccess != null) {
+                        customSuccess(result);
+                    } else {
+                        PopulateLogsTable(result.data);
+                    }
+                },
+                error: function() {
+                    if (customError != null) {
+                        customError();
+                    } else {
+                        ShowGlobalError('@Localizer["PlayersPage.FailedToLoadLogs"]');
+                    }
+                },
+                complete: function() {
+                    if (customComplete != null) {
+                        customComplete();
+                    }
+                }
+            });
+        }
+
+        function PopulateLogsTable(logs) {
+            var logsTable = $("#playerLogs");
+            logsTable.data("clearTable")();
+            logs.sort(function(a, b) {
+                return new Date(a.date).getTime() - new Date(b.date).getTime()
+            });
+            logs.forEach((item, i) => {
+                logsTable.data("addTableRow")([new Date(item["date"]).toLocaleString(), item["content"]]);
+            });
+        }
+
+        function PopulateAddItemsDropDown(items) {
+            var dropdown = $("#item-add-data-form #item-id");
+            dropdown.find('option').remove().end();
+            $.each(items, function() {
+                dropdown.append($("<option />").val(this.item_id).text(this.item_name));
+            });
+        }
+
+        function UpdatePlayerBalance(steamID, balance) {
+            $("#crystals").val(balance.crystals);
+            $("#soul-stones").val(balance.soul_stones);
+            $("#coins").val(balance.coins);
+            $("#update-player-balance-submit").attr("data-bs-steam-id", steamID);
+        }
+
+        function SetPlayerDataVisible(state) {
+            $("#playerDataContainer").toggleClass("player-data-visible", state)
+        }
+
+        function ShowGlobalLoadingSpinner(state) {
+            $("#loadingSpinner").toggleClass("busy", state)
+        }
+
+        function ResetGlobalErrorMessage() {
+            $("#errorMessageContainer").attr("hidden", "true");
+        }
+
+        function ShowGlobalError(error) {
+            $("#errorMessageContainer").removeAttr("hidden");
+            $("#errorMessage").text(error);
+        }
+
+        function ShowLoadingSpinnerItemEditModal(state) {
+            $("#itemEditButtonsContainer").toggleClass("busy", state);
+        }
+
+        function ResetErrorMessageItemEditModal() {
+            $("#itemEditModalErrorContainer").attr("hidden", "true");
+        }
+
+        function ShowErrorItemEditModal(error) {
+            $("#itemEditModalErrorContainer").removeAttr("hidden");
+            $("#itemEditModalErrorMessage").text(error);
+        }
+
+        function ShowLoadingSpinnerItemAddModal(state) {
+            $("#itemAddButtonsContainer").toggleClass("busy", state);
+        }
+
+        function ResetErrorMessageItemAddModal() {
+            $("#itemAddModalErrorContainer").attr("hidden", "true");
+        }
+
+        function ShowErrorItemAddModal(error) {
+            $("#itemAddModalErrorContainer").removeAttr("hidden");
+            $("#itemAddModalErrorMessage").text(error);
+        }
+
+        function ShowLoadingSpinnerItemRemoveModal(state) {
+            $("#itemRemoveButtonsContainer").toggleClass("busy", state);
+        }
+
+        function ResetErrorMessageItemRemoveModal() {
+            $("#itemRemoveModalErrorContainer").attr("hidden", "true");
+        }
+
+        function ShowErrorItemRemoveModal(error) {
+            $("#itemRemoveModalErrorContainer").removeAttr("hidden");
+            $("#itemRemoveModalErrorMessage").text(error);
+        }
+
+        function ShowLoadingSpinnerUpdateBalance(state) {
+            $("#UpdatePlayerBalanceButtonsContainer").toggleClass("busy", state);
+        }
+
+        function PopulateInventoryTable(steamID, items) {
+            let table = $('#playerInventory');
+            table.data('clearTable')();
+            items.forEach((item, i) => {
+                UpdateOrAddInventoryRow(steamID, item["item_name"], item["count"], item["expire_date"], item["item_id"], null);
+            });
+            $("#item-add-new").attr("data-bs-steam-id", steamID);
+        }
+
+        function RemoveInventoryRow(itemID, callback) {
+            let table = $('#playerInventory');
+            var row = table.data('findRowByItemID')(itemID);
+            if (row == null) {
+                if (callback != null) {
+                    callback(false, "Failed to find row.");
+                }
+            } else {
+                row.remove().draw(false);
+                if (callback != null) {
+                    callback(true, null);
+                }
+            }
+        }
+
+        function UpdateOrAddInventoryRow(steamID, itemName, itemCount, expireDate, itemID, callback) {
+            // item["item_name"], item["count"], expireDateFormatted, editButton, removeButton, expireDate, item["item_id"]
+            let table = $('#playerInventory');
+            var row = table.data('findRowByItemID')(itemID);
+            let convertedDate = CreateInventoryTableRowDateTimes(expireDate);
+            let editButton = null;
+            let removeButton = null;
+            if (row == null) {
+                if (steamID == null && callback != null) {
+                    callback(false, "Steam ID is invalid or missing.")
+                    return;
+                }
+                editButton = '<button type="button" class="btn btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white" data-bs-toggle="modal" data-bs-target="#itemEditModal" data-bs-item-id="' + itemID + '" data-bs-steam-id="' + steamID + '">Редактировать</button>';
+                removeButton = '<button type="button" class="btn btn-danger d-none d-md-block pull-right hidden-xs hidden-sm waves-effect waves-light text-white" data-bs-toggle="modal" data-bs-target="#itemRemoveModal" data-bs-item-id="' + itemID + '" data-bs-steam-id="' + steamID + '">Удалить</button>';
+                table.data('addTableRow')(CreateInventoryTableRow(
+                    itemName,
+                    itemCount,
+                    convertedDate["date_formatted"],
+                    editButton,
+                    removeButton,
+                    convertedDate["date"],
+                    itemID
+                ));
+            } else {
+                var rowContent = row.data();
+                if (itemName == null) {
+                    itemName = rowContent[0];
+                }
+                if (itemCount == null) {
+                    itemCount = rowContent[1];
+                }
+                if (itemID == null) {
+                    itemID = rowContent[6];
+                }
+                editButton = rowContent[3];
+                removeButton = rowContent[4];
+                row.data(CreateInventoryTableRow(
+                    itemName,
+                    itemCount,
+                    convertedDate["date_formatted"],
+                    editButton,
+                    removeButton,
+                    convertedDate["date"],
+                    itemID
+                ));
+            }
+            if (callback != null) {
+                callback(true, null);
+                return;
+            }
+        }
+
+        function CreateInventoryTableRow(itemName, itemCount, expireDateFormatted, editButton, removeButton, expireDate, itemID) {
+            return [itemName, itemCount, expireDateFormatted, editButton, removeButton, expireDate, itemID]
+        }
+
+        function CreateInventoryTableRowDateTimes(dateTime) {
+            dateTime = (dateTime == null ? null : new Date(dateTime));
+            return {
+                date: dateTime,
+                date_formatted: (dateTime == null ? "" : dateTime.toLocaleString())
+            }
+        }
+
+        function ConvertDateTimeToDateTimeLocalString(dateTime) {
+            if (dateTime == null) {
+                return null;
+            }
+            var newDate = new Date(dateTime.getTime() - dateTime.getTimezoneOffset() * 60 * 1000);
+            return newDate.toISOString().replace(/\.\d\d\dZ/, "");//.slice(0,16); для дропа секунд
+        }
+
+        function HideModalWindow(modalWindow) {
+            if (modalWindow.val) {
+                modalWindow = modalWindow.val();
+            }
+            const modal = bootstrap.Modal.getInstance(modalWindow);
+            modal.hide();
+        }
+
+    </script>
+    }

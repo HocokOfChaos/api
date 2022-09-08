@@ -1,0 +1,39 @@
+﻿div.dataTables_length {
+    color: #3e5569;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+div.dataTables_filter {
+    color: #3e5569;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+div.dataTables_filter input::placeholder {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+div.dataTables_info {
+    color: #3e5569;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+div.dataTables_paginate li {
+    color: #000;
+    background-color: #f33155;
+    border-color: #f33155;
+    -webkit-box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+/*
+div.dataTables_length,
+div.dataTables_filter,
+div.dataTables_paginate,
+div.dataTables_info {
+
+}
+*/

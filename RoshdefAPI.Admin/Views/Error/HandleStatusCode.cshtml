@@ -1,0 +1,18 @@
+﻿@using RoshdefAPI.Admin.Services.Core
+@inject IJsonViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["ErrorPage.Title"];
+}
+
+@model StatusCode
+
+<div class="text-center">
+    <img src="~/plugins/images/anime.gif" />
+    <h1 class="error-title">
+        @Localizer["ErrorPage.Container.Title"]<br>@Model.Code
+    </h1>
+    <h2 class="error-subtitle text-muted">
+        @Model.GetDescription()
+    </h2>
+</div>

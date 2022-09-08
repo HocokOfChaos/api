@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using RoshdefAPI.Admin.Services.Core
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject IJsonViewLocalizer Localizer
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="text-white">
+        <i class="fa fa-user" aria-hidden="true"></i><span class="text-white font-medium"> @User.Identity?.Name</span>
+    </li> 
+    <li class="col-xs-12 mx-4">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" type="submit"><i class="icon icon-share-alt"></i> <span class="text">@Localizer["LoginPage.Logout"]</span></button>
+        </form>
+     </li>
+}
